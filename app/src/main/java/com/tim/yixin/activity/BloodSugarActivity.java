@@ -1,0 +1,203 @@
+package com.tim.yixin.activity;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.tim.yixin.R;
+import com.tim.yixin.model.BloodSugar;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+
+public class BloodSugarActivity extends AppCompatActivity {
+    private final static String TAG = BloodSugarActivity.class.getSimpleName();
+    private final static int INTENT_RECORD = 0;
+
+    private PieChart mChart;
+    protected Typeface mTfRegular;
+    protected Typeface mTfLight;
+    Button btnAddNewBS;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_blood_sugar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initChart();
+        findView();
+        setListner();
+    }
+
+    private void initChart() {
+        mChart = (PieChart) findViewById(R.id.chartSugar);
+        mChart.setUsePercentValues(true);
+        mChart.getDescription().setEnabled(false);
+        mChart.setExtraOffsets(5, 10, 5, 5);
+
+        mChart.setDragDecelerationFrictionCoef(0.95f);
+
+        mChart.setCenterTextTypeface(mTfLight);
+        mChart.setCenterText(generateCenterSpannableText());
+
+        mChart.setDrawHoleEnabled(true);
+        mChart.setHoleColor(Color.WHITE);
+
+        mChart.setTransparentCircleColor(Color.WHITE);
+        mChart.setTransparentCircleAlpha(110);
+
+        mChart.setHoleRadius(58f);
+        mChart.setTransparentCircleRadius(61f);
+
+        mChart.setDrawCenterText(true);
+
+        mChart.setRotationAngle(0);
+        // enable rotation of the chart by touch
+        mChart.setRotationEnabled(true);
+        mChart.setHighlightPerTapEnabled(true);
+
+        // mChart.setUnit(" €");
+        // mChart.setDrawUnitsInChart(true);
+
+        setData();
+
+        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        // mChart.spin(2000, 0, 360);
+
+        Legend l = mChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+        l.setXEntrySpace(7f);
+        l.setYEntrySpace(0f);
+        l.setYOffset(0f);
+
+        // entry label styling
+        mChart.setEntryLabelColor(Color.WHITE);
+        mChart.setEntryLabelTypeface(mTfRegular);
+        mChart.setEntryLabelTextSize(12f);
+    }
+
+    private void setData() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -3);
+        Date threeMonthAgo = cal.getTime();
+        Log.v(TAG, "Three Month Ago: " + cal.getTime());
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<BloodSugar> bss = realm.where(BloodSugar.class).findAll();
+        int qualified = 0;
+        for (BloodSugar bs : bss) {
+            if (!bs.getCreatedAt().before(threeMonthAgo)) { //Date within recent three months
+                if (bs.getSugar() >= 4 && bs.getSugar() <= 6) {
+                    qualified += 1;
+                }
+            }
+        }
+        float range = bss.size();
+
+        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        entries.add(new PieEntry((float) (qualified / range), "良好控制", null)); //qualified
+        entries.add(new PieEntry((float) ((range - qualified) / range), "还未达标", null)); //unqualified
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+
+        dataSet.setDrawIcons(false);
+
+        dataSet.setSliceSpace(3f);
+        dataSet.setIconsOffset(new MPPointF(0, 40));
+        dataSet.setSelectionShift(5f);
+
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+        colors.add(Color.rgb(0, 176, 80));//qualified
+        colors.add(Color.rgb(255, 0, 0)); //unqualified
+
+        dataSet.setColors(colors);
+
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(11f);
+        data.setValueTextColor(Color.WHITE);
+        mChart.setData(data);
+        // undo all highlights
+        mChart.highlightValues(null);
+        mChart.invalidate();
+    }
+
+    private SpannableString generateCenterSpannableText() {
+        SpannableString s = new SpannableString("Blood Sugar");
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, 11, 0);
+        return s;
+    }
+
+    private void setListner() {
+        btnAddNewBS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(BloodSugarActivity.this, BloodSugarAddActivity.class), INTENT_RECORD);
+            }
+        });
+    }
+
+    private void findView() {
+        btnAddNewBS = (Button) findViewById(R.id.btnNewBS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.heath_list:
+                Intent intent = new Intent(BloodSugarActivity.this, HealthListActivity.class);
+                intent.putExtra("type", "BloodSugar");
+                startActivity(intent);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == INTENT_RECORD) {
+            if (resultCode == RESULT_OK) {
+                setData();
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.health_list_menu, menu);
+        return true;
+    }
+}

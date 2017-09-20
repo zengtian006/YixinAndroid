@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Yixin</string>
+
+    <string name="loading">Loading...</string>
+
+    <!--&lt;!&ndash;bottom&ndash;&gt;-->
+    <!--<string name="bt_news">News</string>-->
+    <!--<string name="bt_product">Products</string>-->
+    <!--<string name="bt_health">Health</string>-->
+    <!--<string name="bt_facilities">Facilities</string>-->
+    <!--bottom-->
+    <string name="bt_home">医心</string>
+    <string name="bt_news">新闻</string>
+    <string name="bt_product">产品</string>
+    <string name="bt_health">健康中心</string>
+    <string name="bt_facilities">附近搜索</string>
+
+    <!-- YiXin Arrays-->
+    <string name="endocrine">Endocrine</string>
+    <string name="cardiology">Cardiology</string>
+    <string name="ophthalmology">Ophthalmology</string>
+    <string name="psychiatry">Psychiatry</string>
+    <string name="hepatology">Hepatology</string>
+    <string name="gastroenterostomy">Gastroenterostomy</string>
+
+    <!-- News Arrays-->
+    <string name="health_tips">Health tips</string>
+    <string name="travel_warning">Travel warning</string>
+
+    <!-- Product Arrays-->
+    <string name="common_med">Common medications</string>
+    <string name="vaccine">Vaccine</string>
+    <string name="medical_instruments">Medical instruments</string>
+    <string name="health_care">Health Care</string>
+    <string name="physical_examination">Physical examination</string>
+
+    <!-- Health Arrays-->
+    <string name="blood_pressure">Blood pressure monitoring</string>
+    <string name="blood_sugar">Blood sugar monitoring</string>
+    <string name="bmi">BMI Calculator</string>
+    <string name="bmi_record">BMI Record</string>
+    <string name="blood_sugar_record">Blood Sugar Record</string>
+    <string name="blood_pressure_record">Blood Pressure Record</string>
+
+
+    <string name="history_record">History Record</string>
+</resources>

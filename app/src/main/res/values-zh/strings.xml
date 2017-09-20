@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">医心</string>
+
+    <string name="loading">正在定位...</string>
+    bt_home
+    <!--bottom-->
+    <string name="bt_home">医心</string>
+    <string name="bt_news">新闻</string>
+    <string name="bt_product">产品</string>
+    <string name="bt_health">健康中心</string>
+    <string name="bt_facilities">附近搜索</string>
+
+    <!-- YiXin Arrays-->
+    <string name="endocrine">内分泌</string>
+    <string name="cardiology">心血管</string>
+    <string name="ophthalmology">眼科</string>
+    <string name="psychiatry">精神科</string>
+    <string name="hepatology">肝脏科</string>
+    <string name="gastroenterostomy">肠胃</string>
+
+    <!-- News Arrays-->
+    <string name="health_tips">健康贴士</string>
+    <string name="travel_warning">旅游警示</string>
+
+    <!-- Product Arrays-->
+    <string name="common_med">常见药物</string>
+    <string name="vaccine">防疫疫苗</string>
+    <string name="medical_instruments">医疗器械</string>
+    <string name="health_care">保健产品</string>
+    <string name="physical_examination">检查项目</string>
+
+    <!-- Health Arrays-->
+    <string name="blood_pressure">血压监测</string>
+    <string name="blood_sugar">血糖监测</string>
+    <string name="bmi">BMI监测</string>
+    <string name="bmi_record">BMI监测记录</string>
+    <string name="blood_sugar_record">血糖监测记录</string>
+    <string name="blood_pressure_record">血压监测记录</string>
+
+    <string name="history_record">历史记录</string>
+</resources>

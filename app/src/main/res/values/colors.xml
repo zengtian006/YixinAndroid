@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF9900</color>
+    <color name="colorPrimaryDark">#E8710C</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#FFFFFF</color>
+    <drawable name="transparent">#00000000</drawable>
+    <color name="transparent">#00000000</color>
+    <color name="darkgrey">#c0c0c0</color>
+    <color name="grey">#ebebeb</color>
+    <color name="gary">#898989</color>
+    <color name="f850_default_blue">#0079ff</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00B050</color>
+    <color name="button_bg">#ccebfc</color>
+    <color name="button_font">#1B85FF</color>
+
+
+</resources>

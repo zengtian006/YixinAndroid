@@ -1,0 +1,28 @@
+<tabs>
+    <!--<tab-->
+    <!--id="@+id/tab_favorites"-->
+    <!--icon="@drawable/ic_favorites"-->
+    <!--title="Favorites"-->
+    <!--barColorWhenSelected="#5D4037" />-->
+    <tab
+        icon="@drawable/ic_bottom_yixin"
+        id="@+id/home_page"
+        title="@string/bt_home" />
+    <tab
+        icon="@drawable/ic_bottom_news"
+        id="@+id/news"
+        title="@string/bt_news" />
+    <tab
+        icon="@drawable/ic_bottom_product"
+        id="@+id/product"
+        title="@string/bt_product" />
+    <tab
+        icon="@drawable/ic_bottom_health"
+        id="@+id/health"
+        title="@string/bt_health" />
+    <tab
+        icon="@drawable/ic_bottom_facilities"
+        id="@+id/facilities"
+        title="@string/bt_facilities" />
+</tabs>
+

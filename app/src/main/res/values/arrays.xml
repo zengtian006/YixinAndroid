@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="YixinArray">
+        <item>@string/endocrine</item>
+        <item>@string/cardiology</item>
+        <item>@string/ophthalmology</item>
+        <item>@string/psychiatry</item>
+        <item>@string/hepatology</item>
+        <item>@string/gastroenterostomy</item>
+    </string-array>
+
+    <string-array name="NewsArray">
+        <item>@string/health_tips</item>
+        <item>@string/travel_warning</item>
+    </string-array>
+
+    <string-array name="ProductArray">
+        <item>@string/common_med</item>
+        <item>@string/vaccine</item>
+        <item>@string/medical_instruments</item>
+        <item>@string/health_care</item>
+        <item>@string/physical_examination</item>
+    </string-array>
+
+    <string-array name="HealthArray">
+        <item>@string/blood_pressure</item>
+        <item>@string/blood_sugar</item>
+        <item>@string/bmi</item>
+    </string-array>
+</resources>
