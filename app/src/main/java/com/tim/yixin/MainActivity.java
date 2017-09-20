@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //test
         LocaleUtil.initialize(getApplicationContext(), LocaleUtil.SIMP_CHINESE);
         LocaleUtil.setLocale(getApplicationContext(), LocaleUtil.SIMP_CHINESE);
 //        Log.v(TAG, "test: " + getResources().getIdentifier("Yixin", null, this.getPackageName()));
